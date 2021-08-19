@@ -1,0 +1,25 @@
+{
+    "name": "Robusta.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:478a2357cc57436488a56e564b08d223",
+        "GUID:8bfb50e90fce7465bb1eaac2adabd915"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.espresso-pub.robusta.facebook",
+            "expression": "0.3",
+            "define": "ROBUSTA_FACEBOOK"
+        }
+    ],
+    "noEngineReferences": false
+}

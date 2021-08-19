@@ -1,0 +1,22 @@
+{
+    "name": "Robusta.Facebook.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Robusta",
+        "Robusta.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Facebook.Unity.Editor.dll",
+        "Facebook.Unity.Settings.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

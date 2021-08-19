@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+buildscript {
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.3'
+    }
+}
+
+dependencies {
+    implementation project(':unityLibrary')
+    }
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion '28.0.3'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        multiDexEnabled true
+        minSdkVersion 19
+        targetSdkVersion 29
+        applicationId 'com.DefaultCompany.FxAnalytics'
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+        versionCode 1
+        versionName '0.1'
+        resConfigs "en", "US"
+    }
+
+    aaptOptions {
+        noCompress = ['.unity3d', '.ress', '.resource', '.obb']
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            signingConfig signingConfigs.debug
+            jniDebuggable true
+        }
+        release {
+            minifyEnabled false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            signingConfig signingConfigs.debug
+        }
+    }
+}

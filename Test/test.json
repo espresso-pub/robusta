@@ -1,0 +1,11 @@
+{
+    "success": true,
+    "data": {
+        "StatsParams": {
+            "ApiKey": "0ec6adbe-841b-4421-a1a9-4b8cce7a503b",
+            "AppId": "390531982041385",
+            "FacebookId": "390531982041385",
+            "Url": "http://192.168.5.20:3000/v1/0ec6adbe-841b-4421-a1a9-4b8cce7a503b/"
+        }
+    }
+}
