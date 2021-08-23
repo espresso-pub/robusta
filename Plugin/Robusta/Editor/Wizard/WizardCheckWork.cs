@@ -126,7 +126,7 @@ namespace Robusta.Editor
                 .Select(AssetDatabase.GUIDToAssetPath).Where(x => AssetDatabase.LoadAssetAtPath<TextAsset>(x) != null)
                 .Select(PackageInfo.FindForAssetPath)
                 .ToList()
-                .Any(packageInfo => packageInfo is {name: "com.espresso-pub.robusta.facebook"});
+                .Any(packageInfo => packageInfo != null && packageInfo.name == "com.espresso-pub.robusta.facebook");
         }
 
         /// <summary>

@@ -248,6 +248,8 @@ public static class RobustaGUILayout {
 			}
 			GUI.color = color;
 			
+			if (checkResult.RobustaSDK == null) return;
+			
 			if (!checkResult.FacebookInstalled || checkResult.FacebookRobustaSDKInstalled) 
 				DrawInstallFacebookModule(checkResult.FacebookRobustaSDKInstalled, checkResult.RobustaSDK.Current);
 			
