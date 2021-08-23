@@ -248,7 +248,43 @@ public static class RobustaGUILayout {
 			}
 			GUI.color = color;
 			
+			if (!checkResult.FacebookInstalled || checkResult.FacebookRobustaSDKInstalled) 
+				DrawInstallFacebookModule(checkResult.FacebookRobustaSDKInstalled, checkResult.RobustaSDK.Current);
+			
 			EditorGUILayout.EndVertical();
+		}
+
+		/// <summary>
+		/// Отрисовка проверки по фейсбук модулю
+		/// </summary>
+		/// <param name="fbRobustaIntalled">Установлен ли фб</param>
+		/// <param name="robustaVersion">Версия робусты</param>
+		private void DrawInstallFacebookModule(bool fbRobustaIntalled, string robustaVersion)
+		{
+			var color = GUI.color;
+			
+			GUILayout.Space(10);
+
+			if (fbRobustaIntalled)
+			{
+				GUI.color = Color.red;
+				if (GUILayout.Button("Remove facebook", GUILayout.Width(150)))
+				{
+					WizardFacebookInstaller.Remove();
+					Close();
+				}
+			}
+			else
+			{
+				GUI.color = Color.green;
+				if (GUILayout.Button("Install facebook module", GUILayout.Width(150)))
+				{
+					WizardFacebookInstaller.Install(robustaVersion);
+					Close();
+				}
+			}
+			
+			GUI.color = color;
 		}
 
 		private void DrawSettingsURL()

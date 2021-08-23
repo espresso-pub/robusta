@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
@@ -27,6 +28,8 @@ namespace Robusta.Editor
             public VersionCheckResult RobustaSDK;
             public string FacebookAppId;
             public bool VideoRecordingReady;
+            public bool FacebookInstalled;
+            public bool FacebookRobustaSDKInstalled;
         }
         
         private static WizardCheckWork _instance;
@@ -63,7 +66,9 @@ namespace Robusta.Editor
                 AnalyticsScene = GameObject.FindObjectOfType<RobustaBehaviour>() != null,
                 RobustaSDK = CheckVersion(GetRobustaSdkVersion(), settings.Versions.RobustaSdk),
                 FacebookAppId = settings.FacebookId,
-                VideoRecordingReady = true
+                VideoRecordingReady = true,
+                FacebookInstalled = CheckInstallFacebook(),
+                FacebookRobustaSDKInstalled = CheckInstallFacebookRobusta()
             };
         }
 
@@ -90,6 +95,38 @@ namespace Robusta.Editor
             }
 
             return robustaVersion;
+        }
+
+        /// <summary>
+        /// Проверяет, установлен ли фейсбук.
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckInstallFacebook()
+        {
+            try
+            {
+                var assembly = Assembly.Load("Facebook.Unity");
+                // Проверяем по наличию основного класса апи фб
+                var fbType = assembly.GetType("Facebook.Unity.FB", false, true);
+                return fbType != null;
+            }
+            catch (Exception _)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Проверяет, установлена ли робуста фейсбук
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckInstallFacebookRobusta()
+        {
+            return AssetDatabase.FindAssets("package")
+                .Select(AssetDatabase.GUIDToAssetPath).Where(x => AssetDatabase.LoadAssetAtPath<TextAsset>(x) != null)
+                .Select(PackageInfo.FindForAssetPath)
+                .ToList()
+                .Any(packageInfo => packageInfo is {name: "com.espresso-pub.robusta.facebook"});
         }
 
         /// <summary>

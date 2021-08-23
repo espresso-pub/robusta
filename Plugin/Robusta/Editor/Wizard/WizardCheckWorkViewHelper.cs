@@ -93,6 +93,13 @@ namespace Robusta.Editor
                 Check = checkWorkData.VideoRecordingReady,
                 Info = "video recording ready"
             });
+            
+            var fbInstalled = checkWorkData.FacebookInstalled ? "installed" : "not installed";
+            data.Add(new CheckInfo()
+            {
+                Check = checkWorkData.FacebookInstalled,
+                Info = $"Facebook SDK {fbInstalled}"
+            });
 
             return data;
         }
