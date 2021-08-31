@@ -7,7 +7,7 @@ namespace Robusta.Events
 	public class RobustaSession : IRobustaEventPathGenerator
 	{
 		public DateTime StartTime { get; private set; }
-		public DateTime EndTime { get; private set; }
+		public DateTime CurrentEndTime { get; private set; }
 		public string Level { get; set; } = "0";
 
 
@@ -16,12 +16,12 @@ namespace Robusta.Events
 			StartTime = DateTime.UtcNow;
 		}
 
-		public void End()
+		public void Update()
 		{
-			EndTime = DateTime.UtcNow;
+			CurrentEndTime = DateTime.UtcNow;
 		}
 
-		public TimeSpan SessionLength => EndTime - StartTime;
+		public TimeSpan SessionLength => CurrentEndTime - StartTime;
 
 		public string GenerateEventPath(string apiRoot)
 		{

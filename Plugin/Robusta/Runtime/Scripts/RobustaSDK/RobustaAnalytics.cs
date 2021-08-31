@@ -34,6 +34,7 @@ namespace Robusta
 		internal static event Action OnApplicationStarted;
 		internal static event Action OnApplicationResumed;
 		internal static event Action<string, string> OnCustomEvent;
+		internal static event Action OnSessionPingEvent;
 
 		internal static void ApplicationPaused()
 		{
@@ -51,6 +52,11 @@ namespace Robusta
 		{
 			Debug.Log("RobustaAnalytics -> ApplicationResumed");
 			OnApplicationResumed?.Invoke();
+		}
+		
+		internal static void SessionPingEvent()
+		{
+			OnSessionPingEvent?.Invoke();
 		}
 
 		public static void CustomEvent(string eventName, string value)

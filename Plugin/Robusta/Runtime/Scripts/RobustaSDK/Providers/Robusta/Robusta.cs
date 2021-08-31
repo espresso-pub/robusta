@@ -17,6 +17,7 @@ namespace Robusta
 			RobustaAnalytics.OnApplicationPaused += ApplicationPaused;
 			RobustaAnalytics.OnApplicationResumed += ApplicationResumed;
 			RobustaAnalytics.OnCustomEvent += OnCustomEvent;
+			RobustaAnalytics.OnSessionPingEvent += SendSessionPingEventHandler;
 		}
 
 		private void OnCustomEvent(string eventName, string value)
@@ -46,7 +47,7 @@ namespace Robusta
 				return;
 			}
 
-			_robustaSession.End();
+			_robustaSession.Update();
 			_robustaSender.SendEvents(new List<IRobustaEventPathGenerator> {_robustaSession});
 		}
 
@@ -65,11 +66,23 @@ namespace Robusta
 			SendZeroSession();
 		}
 
+		private void SendSessionPingEventHandler()
+		{
+			if (_robustaSession == null)
+			{
+				Debug.Log("SessionPing: Robusta session empty!");
+				return;
+			}
+
+			_robustaSession.Update();
+			_robustaSender.SendEvents(new List<IRobustaEventPathGenerator> {_robustaSession});
+		}
+
 		private void SendZeroSession()
 		{
 			var fakeSession = new ZeroRobustaSession {Level = Level};
 			fakeSession.Start();
-			fakeSession.End();
+			fakeSession.Update();
 			_robustaSender.SendEvents(new List<IRobustaEventPathGenerator> {fakeSession});
 		}
 	}

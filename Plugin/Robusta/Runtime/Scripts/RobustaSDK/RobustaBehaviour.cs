@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -35,6 +36,10 @@ namespace Robusta
 		/// </summary>
 		private float _currentTimeRecord;
 #endif
+		/// <summary>
+		/// Каждые SessionPingTime сек шлется пинг сессии
+		/// </summary>
+		private const float SessionPingTime = 10f;
 
 		private void Awake()
 		{
@@ -60,6 +65,11 @@ namespace Robusta
 			RobustaAnalytics.Init(Settings.Get);
 		}
 
+		private void Start()
+		{
+			StartCoroutine(SendSessionPing());
+		}
+
 		private void Update()
 		{
 #if UNITY_EDITOR
@@ -83,6 +93,15 @@ namespace Robusta
 			// Считаем, сколько длится запись (она не зависит от паузы в игре)
 			if (_recordManager.IsVideoRecording()) _currentTimeRecord += Time.unscaledDeltaTime;
 #endif
+		}
+
+		private IEnumerator SendSessionPing()
+		{
+			while (true)
+			{
+				yield return new WaitForSecondsRealtime(SessionPingTime);
+				RobustaAnalytics.SessionPingEvent();
+			}
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
