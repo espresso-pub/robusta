@@ -5,7 +5,7 @@ git checkout github-prod-master || git checkout -b github-prod-master github-pro
 
 git checkout master .
 
-git commit -m "Update to #${ROBUSTA_VERSION}"
+git commit -m "Update to v${ROBUSTA_VERSION}"
 
 git tag "v${ROBUSTA_VERSION}"
 
