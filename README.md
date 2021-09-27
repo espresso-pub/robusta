@@ -16,7 +16,7 @@ Add this GIT link with the package manager: https://github.com/espresso-pub/robu
 
 2. Turn on iOS Platform in File / Build Settings. Even if you build your application for Google Play only
 
-![alt text](https://github.com/espresso-pub/robusta/blob/master/Static/images/Static/images/iOs_Support.png?raw=true)
+![alt text](https://github.com/espresso-pub/robusta/blob/master/Static/images/iOs_Support.png?raw=true)
 
 ## Checking the app
 Start an application on a device or in the editor if ping works
