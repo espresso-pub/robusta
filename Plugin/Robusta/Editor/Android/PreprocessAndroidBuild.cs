@@ -1,6 +1,5 @@
 using System.IO;
 using System.Reflection;
-using GooglePlayServices;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -24,7 +23,6 @@ namespace Robusta.Editor.Android
                 return;
             }
 
-            PrepareResolver();
             PreparePlayerSettings();
         }
 
@@ -47,31 +45,6 @@ namespace Robusta.Editor.Android
 // #if UNITY_2020_3_OR_NEWER
 // 			PlayerSettings.SetPropertyInt("useCustomGradlePropertiesTemplate", 1);
 // #endif
-        }
-
-        private static void PrepareResolver()
-        {
-            // Force playServices Resolver
-            PlayServicesResolver.Resolve(null, true);
-
-            // For some bizarre reason GooglePlayServices has most settings marked internal. Oh well...
-            typeof(SettingsDialog).GetProperty("EnableAutoResolution", BindingFlags.Static | BindingFlags.NonPublic)
-                ?.SetValue(null, true);
-
-            typeof(SettingsDialog).GetProperty("AutoResolveOnBuild", BindingFlags.Static | BindingFlags.NonPublic)
-                ?.SetValue(null, true);
-
-            typeof(SettingsDialog).GetProperty("InstallAndroidPackages", BindingFlags.Static | BindingFlags.NonPublic)
-                ?.SetValue(null, true);
-
-            typeof(SettingsDialog).GetProperty("PatchMainTemplateGradle", BindingFlags.Static | BindingFlags.NonPublic)
-                ?.SetValue(null, true);
-
-            typeof(SettingsDialog).GetProperty("UseJetifier", BindingFlags.Static | BindingFlags.NonPublic)
-                ?.SetValue(null, true);
-
-            typeof(SettingsDialog).GetProperty("VerboseLogging", BindingFlags.Static | BindingFlags.NonPublic)
-                ?.SetValue(null, true);
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Globalization;
-using Google;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -18,18 +17,9 @@ namespace Robusta.Editor.iOS
                 return;
             }
 
-            PrepareResolver();
             PreparePlayerSettings();
         }
 
-        private static void PrepareResolver()
-        {
-            IOSResolver.PodfileGenerationEnabled = true;
-            IOSResolver.PodToolExecutionViaShellEnabled = true;
-            IOSResolver.AutoPodToolInstallInEditorEnabled = true;
-            IOSResolver.UseProjectSettings = true;
-            IOSResolver.CocoapodsIntegrationMethodPref = IOSResolver.CocoapodsIntegrationMethod.Project;
-        }
 
         private static void PreparePlayerSettings()
         {
