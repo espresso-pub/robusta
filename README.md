@@ -5,7 +5,7 @@ Remove the following folders in your Unity project, if they present:
 - Assets/Play Services Resolver
 
 ## Adding a package to your unity project
-Add this GIT link with the package manager: https://github.com/espresso-pub/robusta.git?path=/Plugin/Robusta#v0.3.6
+Add this GIT link with the package manager: https://github.com/espresso-pub/robusta.git?path=/Plugin/Robusta#v0.3.7
 
 ![alt text](https://github.com/espresso-pub/robusta/raw/master/Static/images/image3.png?raw=true)
 
