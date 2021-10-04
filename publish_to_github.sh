@@ -5,6 +5,7 @@ git checkout github-prod-master || git checkout -b github-prod-master github-pro
 
 rm -rf ./*
 git checkout master .
+git add .
 
 git commit -m "Update to v${ROBUSTA_VERSION}"
 
