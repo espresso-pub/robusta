@@ -3,6 +3,7 @@ ROBUSTA_VERSION=$(jq -r ".version" < Plugin/Robusta/package.json)
 
 git checkout github-prod-master || git checkout -b github-prod-master github-prod/master
 
+rm -rf ./*
 git checkout master .
 
 git commit -m "Update to v${ROBUSTA_VERSION}"
