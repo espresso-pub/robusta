@@ -26,7 +26,7 @@ namespace Robusta.Events
 		public string GenerateEventPath(string apiRoot)
 		{
 			// https://{server}/api/v1/{app_code}/event/{user_id}/{session_start_time}/{session_length_seconds}/{level}
-			return $"{apiRoot}/{StartTime.UnixTimestamp()}/{SessionLength.Seconds}/{Level}";
+			return $"{apiRoot}/{StartTime.UnixTimestamp()}/{Math.Round(SessionLength.TotalSeconds)}/{Level}";
 		}
 	}
 }

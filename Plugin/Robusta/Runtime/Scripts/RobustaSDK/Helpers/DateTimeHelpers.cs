@@ -7,11 +7,11 @@ namespace Robusta.Helpers
 		/// <summary>
 		/// Gets a Unix timestamp representing the current moment
 		/// </summary>
-		/// <param name="ignored">Parameter ignored</param>
+		/// <param name="dt"></param>
 		/// <returns>Now expressed as a Unix timestamp</returns>
-		public static long UnixTimestamp(this DateTime ignored)
+		public static long UnixTimestamp(this DateTime dt)
 		{
-			return (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+			return new DateTimeOffset(dt).ToUnixTimeSeconds();
 		}
 	}
 }
